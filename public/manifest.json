@@ -1,0 +1,6 @@
+{
+  "short_name": "Weather",
+  "name": "Chris Weather App",
+  "start_url": "./index.html",
+  "display": "standalone"
+}
