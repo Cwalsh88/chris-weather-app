@@ -19,28 +19,37 @@ class Temperature extends React.Component {
 }
 
 class Container extends React.Component {
-  /*
-  componentDidMount() {
-    fetch('api.openweathermap.org/data/2.5/forecast?zip=30319,us&APPID=2ec71497636bbe75193d9958f68a8c5b&cnt=1&units=imperial')
-      .then(response => response.json())
-      .then(data => list = JSON.parse(data));
+  constructor(props) {
+	super(props);
   }
-  */
-
+   
   render() {
-    return (
+	console.log("Rendering");
+	let temps = this.props.temps;
+	return (
       <div className="box">
         <CardTitle />
         <Temperature />
-      </div>
+		<ul>
+			{temps.map(day =>
+				<li key={day.dt}>
+					{day.main.temp}
+				</li>
+			)}
+		</ul>
+	  </div>
     );
   }
 }
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(<Container />, rootElement);
+console.log("Beginning of App, can write JS freely here");
+var myTemps = [];
+fetch('https://api.openweathermap.org/data/2.5/forecast?zip=30319,us&APPID=2ec71497636bbe75193d9958f68a8c5b&cnt=1&units=imperial')
+      .then(response => response.json())
+      .then(data => {
+		  myTemps = data.list; 
+		  const rootElement = document.getElementById("root");
+		  ReactDOM.render(<Container temps={myTemps}  />, rootElement);
+	  }); 
 
-var list = [];
-
-//Api will get passed into the Container down here.
 //Then passed down in the application as props.
