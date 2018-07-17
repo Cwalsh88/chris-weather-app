@@ -1,9 +1,15 @@
-.box {
-	display: inline-block;
-	border: 1px solid black;
-	text-align: center;
-	width: 19%;
-	height: 100%;
+.card {
+  display: inline-block;
+  border: 1px solid black;
+  text-align: center;
+  width: 19%;
+  height: 100%;
+}
+
+.title {
+  text-align: center;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  font-size: 2em;
 }
 
 .cardTitle {
@@ -13,3 +19,4 @@
 .temperature {
   border: 1px solid red;
 }
+
