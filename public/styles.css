@@ -1,22 +1,36 @@
+.app {
+  text-align: center;
+}
+
 .card {
   display: inline-block;
-  border: 1px solid black;
   text-align: center;
-  width: 19%;
+  width: 16%;
   height: 100%;
+  border: 1px solid black;
+  margin: 0 1%;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: .3s;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.temperature {
+  padding: 30% 0px;
+  font-size: 3em;
 }
 
 .title {
   text-align: center;
   font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  font-size: 2em;
+  font-size: 3em;
+  margin-bottom: 2%;
 }
 
-.cardTitle {
-  border: 1px solid green;
+.day {
+  font-size: 1.5em;
+  letter-spacing: 4px;
 }
-
-.temperature {
-  border: 1px solid red;
-}
-
