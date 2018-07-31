@@ -1,5 +1,5 @@
 # chris-weather-app
-A mix of reactJS &amp; nodeJS being tested with Jest to deploy via Heroku.
+A mix of React & Node.js being tested with Jest to deploy via Heroku.
 
-Visit to see current iteration:
+Click here to visit the current iteration:
 https://chrisweatherapp.herokuapp.com/
