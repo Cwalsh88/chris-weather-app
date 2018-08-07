@@ -34,3 +34,18 @@
   font-size: 1.5em;
   letter-spacing: 3px;
 }
+
+.city {
+  display: block;
+  margin-bottom: 2%;
+}
+
+.form {
+  display: block;
+}
+
+.button {
+  display: block;
+  margin: 2% auto;
+}
+

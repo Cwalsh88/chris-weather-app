@@ -7,12 +7,21 @@ function Title(props) {
   )
 }
 
+function City(props) {
+  const city = props.city;
+  return (
+    <div className="city">
+      Current City Displayed: {city}
+    </div>
+  )
+}
+
 function Button(props) {
   const num = props.numOfDays;
   return (
-      <button onClick={props.onClick}>
-        {num[4] ? "Collapse" : "Expand"} the Forecast
-      </button>
+    <button className="button" onClick={props.onClick}>
+      {num[4] ? "Collapse" : "Expand"} the Forecast
+    </button>
   )
 }
 
@@ -29,10 +38,12 @@ function Card(props) {
   const {list, visible} = props
   const date = new Date(list.dt_txt)
   const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday",
-     "Thursday", "Friday", "Saturday"]
+                   "Thursday", "Friday", "Saturday"]
   return (
     <div className="card" style={{display: visible ? "inline-block" : "none"}}>
-      <span className="day">{weekday[date.getDay()]}</span>
+      <span className="day">
+        {weekday[date.getDay()]}
+      </span>
       <Temperature list={list} />
     </div>
   )
@@ -61,7 +72,7 @@ class Form extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.submitInput}>
+      <form className="form" onSubmit={this.submitInput}>
         <label>
           Enter a zipcode to change the city: 
             <input type="text" pattern="[0-9]{5}" title="Must be 5 digits" value={this.state.NewZipcode} onChange={this.updateState}/>
@@ -96,7 +107,7 @@ class Container extends React.Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.zipcode !== this.state.zipcode) {
       const zipcode = this.state.zipcode
-      const url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zipcode + ',us&APPID=2ec71497636bbe75193d9958f68a8c5b&cnt=40&units=imperial'
+      let url = 'https://api.openweathermap.org/data/2.5/forecast?zip=' + zipcode + ',us&APPID=2ec71497636bbe75193d9958f68a8c5b&cnt=40&units=imperial'
       this.setState({ isLoading: true})
       fetch(url)
         .then(response => response.json())
@@ -104,7 +115,7 @@ class Container extends React.Component {
     }
   }
 
-  handleClick() {
+  toggleDays() {
     const visibleDays = this.state.visibleDays.slice()
     visibleDays[3] = !visibleDays[3]
     visibleDays[4] = !visibleDays[4]
@@ -136,8 +147,8 @@ class Container extends React.Component {
           <Card list={weatherAPI.list[15]} visible={visibleDays[2]} />
           <Card list={weatherAPI.list[23]} visible={visibleDays[3]} />
           <Card list={weatherAPI.list[31]} visible={visibleDays[4]} />
-          <p><Button numOfDays={visibleDays} onClick={() => this.handleClick()} /></p>
-          <p>Current City Displayed: {weatherAPI.city.name}</p>
+          <Button numOfDays={visibleDays} onClick={() => this.toggleDays()} />
+          <City city={weatherAPI.city.name} />
           <Form onSubmit={this.updateZipcode} />
       </div>
     )
@@ -145,8 +156,5 @@ class Container extends React.Component {
 }
 
 console.log("Beginning of App")
-
 const rootElement = document.getElementById("root")
 ReactDOM.render(<Container />, rootElement)
-
-//Get rid of the <p> tags in Card, Style the app properly through CSS
